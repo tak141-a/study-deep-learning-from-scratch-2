@@ -24,3 +24,32 @@ class Sigmoid:
             float: 順伝播結果
         """
         return 1 / (1 + np.exp(-x))
+
+
+class Affine:
+    """
+    Affineレイヤ
+
+    Attributes:
+        params (list): 重みとバイアス
+    """
+
+    def __init__(self, W, b):
+        """
+        Args:
+            W (list): 重み
+            b (list): バイアス
+        """
+        self.params = [W, b]
+
+    def forward(self, x):
+        """順伝播
+
+        Affineレイヤの順伝播の結果を返す
+
+        Args:
+            x (list): 入力
+        """
+        W, b = self.params      # paramsからWとbを取り出し
+        out = np.dot(x, W) + b  # xW + b
+        return out
