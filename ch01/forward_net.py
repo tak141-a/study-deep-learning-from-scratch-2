@@ -7,11 +7,10 @@ class Sigmoid:
 
     Attributes:
         params (list): パラメータ(重みやバイアスなど)
-
     """
 
     def __init__(self):
-        self.params = []
+        self.params = []    # 学習するパラメータが存在しないため空のリストで初期化
 
     def forward(self, x):
         """順伝播
