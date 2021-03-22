@@ -83,7 +83,50 @@ class MatMul:
         return dx
 
 
+class Sigmoid:
+    """
+    Sigmoidレイヤ
+
+    Attributes:
+        params (list): 学習するパラメータ
+        grads (list): 勾配
+        out (list): 順伝播の出力
+    """
+    def __init__(self):
+        self.params, self.grads = [], []
+        self.out = None
+
+    def forward(self, x):
+        """順伝播
+
+        Sigmoidレイヤの順伝播の結果を返す
+
+        Args:
+            x (ndarray): 入力
+
+        Return:
+            out (ndarray): 順伝播結果
+        """
+        out = 1 / (1 + np.exp(-x))  # Sigmoid関数
+        self.out = out  # 順伝播結果をインスタンス変数のoutに保持
+        return out
+
+    def backward(self, dout):
+        """逆伝播
+
+        Sigmoidレイヤの逆伝播の結果を返す
+
+        Args:
+            dout (ndarray): 入力
+
+        Return:
+            dx (ndarray): 逆伝播結果
+        """
+        dx = dout * (1.0 - self.out) * self.out  # 順伝播結果self.outを使って計算を行う
+        return dx
+
+
 W = np.random.rand(2, 3)
 x = np.random.rand(3, 2)
-matmul = MatMul(W)
-print(matmul.forward(x))
+sigmoid = Sigmoid()
+print(sigmoid.forward(x))
